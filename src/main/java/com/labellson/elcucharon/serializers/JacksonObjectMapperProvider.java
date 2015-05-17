@@ -3,13 +3,15 @@
  */
 package com.labellson.elcucharon.serializers;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import javax.ws.rs.ext.ContextResolver;
-import org.codehaus.jackson.map.ObjectMapper;
+import javax.ws.rs.ext.Provider;
 
 /**
  *
  * @author labellson
  */
+@Provider
 public class JacksonObjectMapperProvider implements ContextResolver<ObjectMapper> {
 
 	final ObjectMapper defaultObjectMapper;

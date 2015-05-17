@@ -20,6 +20,8 @@ public class ApplicationConfig extends Application {
 	@Override
 	public Set<Class<?>> getClasses() {
 		Set<Class<?>> resources = new java.util.HashSet<>();
+		resources.add(JacksonFeature.class);
+		resources.add(JacksonObjectMapperProvider.class);
 		addRestResourceClasses(resources);
 		return resources;
 	}
@@ -34,6 +36,7 @@ public class ApplicationConfig extends Application {
 		resources.add(com.labellson.elcucharon.rest.api.ReservaFacadeREST.class);
 		resources.add(com.labellson.elcucharon.rest.api.RestauranteFacadeREST.class);
 		resources.add(com.labellson.elcucharon.rest.api.UserFacadeREST.class);
+		resources.add(com.labellson.elcucharon.serializers.JacksonObjectMapperProvider.class);
 	}
 	
 }
