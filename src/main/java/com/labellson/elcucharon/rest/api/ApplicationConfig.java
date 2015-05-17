@@ -5,8 +5,10 @@
  */
 package com.labellson.elcucharon.rest.api;
 
+import com.labellson.elcucharon.serializers.JacksonObjectMapperProvider;
 import java.util.Set;
 import javax.ws.rs.core.Application;
+import org.glassfish.jersey.jackson.JacksonFeature;
 
 /**
  *

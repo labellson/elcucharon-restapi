@@ -20,6 +20,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
 /**
  *
@@ -30,19 +31,21 @@ import javax.ws.rs.Produces;
 public class UserFacadeREST extends AbstractFacade<User> {
 	//@PersistenceContext(unitName = "com.labellson_elcucharon-restapi_war_1.0PU")
 	private EntityManager em;
+	//private static final String JSON_RESPONSE = "{\"email\":\"%s\", \""
 
 	public UserFacadeREST() {
 		super(User.class);
 	}
 
-	/*@POST
+	@POST
     @Override
     @Consumes({"application/json"})
-	public void create(User entity) {
-		super.create(entity);
+	@Produces(MediaType.APPLICATION_JSON)
+	public User create(User entity) {
+		return super.create(entity);
 	}
 
-	@PUT
+	/*@PUT
     @Path("{id}")
     @Consumes({"application/json"})
 	public void edit(@PathParam("id") Integer id, User entity) {

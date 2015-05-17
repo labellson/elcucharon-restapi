@@ -21,17 +21,17 @@ public abstract class AbstractFacade<T> {
 
 	protected abstract EntityManager getEntityManager();
 
-	public String create(T entity) {
+	public T create(T entity) {
 		try {
 			EntityManager em = getEntityManager();
 			em.getTransaction().begin();
 			em.persist(entity);
 			em.getTransaction().commit();
 			em.refresh(entity);
-			return "true";
+			return entity;
 		} catch (Exception e) {
 			e.printStackTrace();
-			return "false";
+			return null;
 		}
 	}
 
