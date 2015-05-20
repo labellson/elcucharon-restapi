@@ -18,6 +18,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -56,8 +57,9 @@ public class User implements Serializable {
 	@Size(max = 255)
     @Column(name = "pass", length = 255)
 	private String pass;
-	@Column(name = "movil")
-	private Integer movil;
+	@Size(max = 15)
+	@Column(name = "movil", length = 15)
+	private String movil;
 	@Size(max = 255)
     @Column(name = "dni", length = 255)
 	private String dni;
@@ -69,6 +71,10 @@ public class User implements Serializable {
 	private String foto;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "idUser")
 	private Collection<Reserva> reservaCollection;
+	
+	//Indica que ha habido un problema
+	@Transient //Asi el ORM no lo mapea para buscarlo en la BD
+	private String problem;
 
 	public User() {
 	}
@@ -101,11 +107,11 @@ public class User implements Serializable {
 		this.pass = pass;
 	}
 
-	public Integer getMovil() {
+	public String getMovil() {
 		return movil;
 	}
 
-	public void setMovil(Integer movil) {
+	public void setMovil(String movil) {
 		this.movil = movil;
 	}
 
@@ -167,4 +173,15 @@ public class User implements Serializable {
 		return "com.labellson.elcucharon.model.User[ id=" + id + " ]";
 	}
 	
+	public void setProblem(String prob){
+		problem = prob;
+	}
+	
+	public String getProblem(){
+		return problem;
+	}
+	
+	public void clearProblem(){
+		problem = null;
+	}
 }

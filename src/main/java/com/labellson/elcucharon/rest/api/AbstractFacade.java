@@ -7,6 +7,7 @@ package com.labellson.elcucharon.rest.api;
 
 import java.util.List;
 import javax.persistence.EntityManager;
+import org.eclipse.persistence.exceptions.DatabaseException;
 
 /**
  *
@@ -21,7 +22,7 @@ public abstract class AbstractFacade<T> {
 
 	protected abstract EntityManager getEntityManager();
 
-	public T create(T entity) {
+	public T create(T entity){
 		try {
 			EntityManager em = getEntityManager();
 			em.getTransaction().begin();
@@ -35,16 +36,16 @@ public abstract class AbstractFacade<T> {
 		}
 	}
 
-	public String edit(T entity) {
+	public T edit(T entity) {
 		try {
 			EntityManager em = getEntityManager();
 			em.getTransaction().begin();
 			em.merge(entity);
 			em.getTransaction().commit();
-			return "true";
+			return entity;
 		} catch (Exception e) {
 			e.printStackTrace();
-			return "false";
+			return null;
 		}
 	}
 

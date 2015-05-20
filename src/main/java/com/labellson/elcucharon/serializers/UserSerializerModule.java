@@ -11,6 +11,7 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.labellson.elcucharon.model.User;
 import java.io.IOException;
+import java.math.BigDecimal;
 
 /**
  *
@@ -28,7 +29,15 @@ public class UserSerializerModule extends SimpleModule {
 		@Override
 		public void serialize(User t, JsonGenerator jg, SerializerProvider sp) throws IOException, JsonProcessingException {
 			jg.writeStartObject();
+			if(t.getId() != null)
+				jg.writeNumberField("id", t.getId());
 			jg.writeStringField("nombre", t.getNombre());
+			jg.writeStringField("email", t.getEmail());
+			jg.writeStringField("movil", t.getMovil());
+			jg.writeStringField("dni", t.getDni());
+			jg.writeStringField("foto", t.getFoto());
+			if(t.getProblem() != null)
+				jg.writeStringField("problem", t.getProblem());
 			jg.writeEndObject();
 		}
 	}

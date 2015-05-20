@@ -5,6 +5,7 @@
  */
 package com.labellson.elcucharon.rest.api;
 
+import com.labellson.elcucharon.security.SecurityInterceptor;
 import com.labellson.elcucharon.serializers.JacksonObjectMapperProvider;
 import java.util.Set;
 import javax.ws.rs.core.Application;
@@ -36,6 +37,7 @@ public class ApplicationConfig extends Application {
 		resources.add(com.labellson.elcucharon.rest.api.ReservaFacadeREST.class);
 		resources.add(com.labellson.elcucharon.rest.api.RestauranteFacadeREST.class);
 		resources.add(com.labellson.elcucharon.rest.api.UserFacadeREST.class);
+		resources.add(com.labellson.elcucharon.security.SecurityInterceptor.class);
 		resources.add(com.labellson.elcucharon.serializers.JacksonObjectMapperProvider.class);
 	}
 	
