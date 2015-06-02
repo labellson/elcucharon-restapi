@@ -5,7 +5,11 @@
  */
 package com.labellson.elcucharon.rest.api;
 
+import com.fasterxml.jackson.databind.JsonSerializer;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.labellson.elcucharon.model.Restaurante;
+import com.labellson.elcucharon.model.User;
+import com.labellson.elcucharon.serializers.RestauranteSerializerPhotoModule.RestauranteSerializerPhoto;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -57,19 +61,26 @@ public class RestauranteFacadeREST extends AbstractFacade<Restaurante> {
 
 	@GET
     @Path("{id}")
-    @Produces({"application/json"})
+    @Produces({"application/json;charset=UTF-8"})
 	public Restaurante find(@PathParam("id") Integer id) {
 		return super.find(id);
 	}
 
 	@GET
     @Override
-    @Produces({"application/json"})
+    @Produces({"application/json;charset=UTF-8"})
 	public List<Restaurante> findAll() {
 		return super.findAll();
 	}
-
+	
 	@GET
+	@Produces({"application/json;charset=UTF-8"})
+	@Path("image/{id}")
+	public Restaurante findPhoto(@PathParam("id") Integer id){
+		return find(id);
+	}
+
+	/*@GET
     @Path("{from}/{to}")
     @Produces({"application/json"})
 	public List<Restaurante> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
@@ -81,7 +92,7 @@ public class RestauranteFacadeREST extends AbstractFacade<Restaurante> {
     @Produces("text/plain")
 	public String countREST() {
 		return String.valueOf(super.count());
-	}
+	}*/
 
 	@Override
 	protected EntityManager getEntityManager() {

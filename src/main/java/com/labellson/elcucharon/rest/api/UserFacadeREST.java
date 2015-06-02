@@ -43,7 +43,7 @@ public class UserFacadeREST extends AbstractFacade<User> {
 	@POST
     @Override
     @Consumes({"application/json"})
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON+";charset=UTF-8")
 	public User create(User entity) {
 		String problem = checkUser(entity, -1);
 		if(problem != null){ entity.setProblem(problem); return entity; }
@@ -54,7 +54,7 @@ public class UserFacadeREST extends AbstractFacade<User> {
 	@PUT
     @Path("{id}")
     @Consumes({"application/json"})
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON+";charset=UTF-8")
 	public User edit(@PathParam("id") Integer id, User entity) {
 		String problem = checkUser(entity, id);
 		if(problem != null){ entity.setProblem(problem); return entity; }
@@ -69,7 +69,7 @@ public class UserFacadeREST extends AbstractFacade<User> {
 
 	@GET
     @Path("{id}")
-    @Produces({"application/json"})
+    @Produces({"application/json;charset=UTF-8"})
 	@Authenticated
 	public User find(@PathParam("id") Integer id) {
 		return super.find(id);
@@ -77,7 +77,7 @@ public class UserFacadeREST extends AbstractFacade<User> {
 	
 	@GET
 	@Path("email/{email}")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON+";charset=UTF-8")
 	@Authenticated
 	public User findByEmail(@PathParam("email") String email){
 		Query q = getEntityManager().createNamedQuery("User.findByEmail", User.class);

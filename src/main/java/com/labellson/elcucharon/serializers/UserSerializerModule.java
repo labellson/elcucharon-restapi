@@ -12,6 +12,7 @@ import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.labellson.elcucharon.model.User;
 import java.io.IOException;
 import java.math.BigDecimal;
+import org.jboss.resteasy.util.Base64;
 
 /**
  *
@@ -26,6 +27,8 @@ public class UserSerializerModule extends SimpleModule {
 
 	private static class UserSerializer extends JsonSerializer<User> {
 
+		private static final String imagePath = "/home/labellson/NetBeansProjects/elcucharon-restapi/src/main/resources/images/user/";
+
 		@Override
 		public void serialize(User t, JsonGenerator jg, SerializerProvider sp) throws IOException, JsonProcessingException {
 			jg.writeStartObject();
@@ -35,7 +38,9 @@ public class UserSerializerModule extends SimpleModule {
 			jg.writeStringField("email", t.getEmail());
 			jg.writeStringField("movil", t.getMovil());
 			jg.writeStringField("dni", t.getDni());
-			jg.writeStringField("foto", t.getFoto());
+			if (t.getFoto() != null) {
+				jg.writeStringField("foto", Base64.encodeFromFile(imagePath + t.getFoto()));
+			}
 			if(t.getProblem() != null)
 				jg.writeStringField("problem", t.getProblem());
 			jg.writeEndObject();

@@ -33,7 +33,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
 	@NamedQuery(name = "Reserva.findAll", query = "SELECT r FROM Reserva r"),
 	@NamedQuery(name = "Reserva.findById", query = "SELECT r FROM Reserva r WHERE r.id = :id"),
-	@NamedQuery(name = "Reserva.findByFecha", query = "SELECT r FROM Reserva r WHERE r.fecha = :fecha")})
+	@NamedQuery(name = "Reserva.findByFecha", query = "SELECT r FROM Reserva r WHERE r.fecha = :fecha"),
+	@NamedQuery(name = "Reserva.findByIdUser", query = "SELECT r FROM Reserva r WHERE r.idUser.id = :idUser"),
+	@NamedQuery(name = "Reserva.findFechasReservas", query = "SELECT r FROM Reserva r WHERE r.idRestaurante.id = :idRestaurante")})
 public class Reserva implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
