@@ -3,6 +3,7 @@
  */
 package com.labellson.elcucharon.serializers;
 
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.labellson.elcucharon.deserializer.ReservaDeserializerModule;
 import com.labellson.elcucharon.deserializer.UserDeserializerModule;

@@ -55,17 +55,23 @@ public class UserFacadeREST extends AbstractFacade<User> {
     @Path("{id}")
     @Consumes({"application/json"})
 	@Produces(MediaType.APPLICATION_JSON+";charset=UTF-8")
+	@Authenticated
 	public User edit(@PathParam("id") Integer id, User entity) {
 		String problem = checkUser(entity, id);
 		if(problem != null){ entity.setProblem(problem); return entity; }
+		if(entity.getPass() == null){
+			User u = find(id);
+			entity.setPass(u.getPass());
+		}
 		return super.edit(entity);
 	}
 
-	/*@DELETE
+	@DELETE
     @Path("{id}")
+	@Authenticated
 	public void remove(@PathParam("id") Integer id) {
 		super.remove(super.find(id));
-	}*/
+	}
 
 	@GET
     @Path("{id}")

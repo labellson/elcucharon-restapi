@@ -5,6 +5,8 @@
  */
 package com.labellson.elcucharon.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -56,6 +58,7 @@ public class User implements Serializable {
 	private String email;
 	@Size(max = 255)
     @Column(name = "pass", length = 255)
+	@JsonInclude(Include.NON_DEFAULT)
 	private String pass;
 	@Size(max = 15)
 	@Column(name = "movil", length = 15)

@@ -73,12 +73,12 @@ public class RestauranteFacadeREST extends AbstractFacade<Restaurante> {
 		return super.findAll();
 	}
 	
-	@GET
+	/*@GET
 	@Produces({"application/json;charset=UTF-8"})
 	@Path("image/{id}")
 	public Restaurante findPhoto(@PathParam("id") Integer id){
 		return find(id);
-	}
+	}*/
 
 	/*@GET
     @Path("{from}/{to}")
